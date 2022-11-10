@@ -29,4 +29,35 @@ const listAnnualEarnings = async (year) => {
   }
 }
 
-module.exports = { listMonthlyEarnings, listAnnualEarnings }
+const listBestSellersMenu = async (data, limit) => {
+  try {
+    const mySqlClient = await MySqlClient.getInstance()
+    const procedure = sqlProcedures.listBestSellersMenu(data, limit)
+    const sqlRunner = new MySqlRunner(mySqlClient)
+    const result = await sqlRunner.runProcedure(procedure)
+    console.log(JSON.stringify(result))
+    return result.pop()[0]
+  } catch (error) {
+    throw error
+  }
+}
+
+const listLeastSoldMenu = async (data, limit) => {
+  try {
+    const mySqlClient = await MySqlClient.getInstance()
+    const procedure = sqlProcedures.listLeastSoldMenu(data, limit)
+    const sqlRunner = new MySqlRunner(mySqlClient)
+    const result = await sqlRunner.runProcedure(procedure)
+    console.log(JSON.stringify(result))
+    return result.pop()[0]
+  } catch (error) {
+    throw error
+  }
+}
+
+module.exports = { 
+  listMonthlyEarnings,
+  listAnnualEarnings,
+  listBestSellersMenu,
+  listLeastSoldMenu
+}
