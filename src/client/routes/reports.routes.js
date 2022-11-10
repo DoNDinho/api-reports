@@ -1,13 +1,13 @@
 const express = require('express')
-const listEarningsMonthlyService = require('../../business/services/reports/list-earnings-monthly.service')
-const listEarningAnnualService = require('../../business/services/reports/list-earnings-annual.service')
+const listSalesMonthlyService = require('../../business/services/reports/list-sales-monthly.service')
+const listSalesAnnualService = require('../../business/services/reports/list-sales-annual.service')
 const listLeastSoldMenuService = require('../../business/services/reports/list-least-sold-menu.service')
 const listBestSellerMenuService = require('../../business/services/reports/list-best-seller-menu.service')
 const router = express.Router()
 
-router.post(`/Reports/v1/earnings/monthly`, async (req, res, next) => {
+router.post(`/Reports/v1/sales/monthly`, async (req, res, next) => {
   try {
-    const response = await listEarningsMonthlyService.execute(req.body.date)
+    const response = await listSalesMonthlyService.execute(req.body.date)
     res.json({ monthly_sales: response })
   } catch (error) {
     console.log('error: ', error.message)
@@ -15,9 +15,9 @@ router.post(`/Reports/v1/earnings/monthly`, async (req, res, next) => {
   }
 })
 
-router.post(`/Reports/v1/earnings/annual`, async (req, res, next) => {
+router.post(`/Reports/v1/sales/annual`, async (req, res, next) => {
   try {
-    const response = await listEarningAnnualService.execute(req.body.year)
+    const response = await listSalesAnnualService.execute(req.body.year)
     res.json({ annual_sales: response })
   } catch (error) {
     console.log('error: ', error.message)

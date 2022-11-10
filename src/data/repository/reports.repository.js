@@ -3,10 +3,10 @@ const MySqlClient = require('../database/my-sql/client')
 const MySqlRunner = require('../database/my-sql/runner')
 const sqlProcedures = require('../database/my-sql/sql_procedures')
 
-const listMonthlyEarnings = async (date) => {
+const listMonthlySales = async (date) => {
   try {
     const mySqlClient = await MySqlClient.getInstance()
-    const procedure = sqlProcedures.listMonthlyEarnings(date)
+    const procedure = sqlProcedures.listMonthlySales(date)
     const sqlRunner = new MySqlRunner(mySqlClient)
     const result = await sqlRunner.runProcedure(procedure)
     console.log(JSON.stringify(result))
@@ -16,10 +16,10 @@ const listMonthlyEarnings = async (date) => {
   }
 }
 
-const listAnnualEarnings = async (year) => {
+const listAnnualSales = async (year) => {
   try {
     const mySqlClient = await MySqlClient.getInstance()
-    const procedure = sqlProcedures.listAnnualEarnings(year)
+    const procedure = sqlProcedures.listAnnualSales(year)
     const sqlRunner = new MySqlRunner(mySqlClient)
     const result = await sqlRunner.runProcedure(procedure)
     console.log(JSON.stringify(result))
@@ -56,8 +56,8 @@ const listLeastSoldMenu = async (data, limit) => {
 }
 
 module.exports = { 
-  listMonthlyEarnings,
-  listAnnualEarnings,
+  listMonthlySales,
+  listAnnualSales,
   listBestSellersMenu,
   listLeastSoldMenu
 }

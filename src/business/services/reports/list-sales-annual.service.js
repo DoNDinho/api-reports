@@ -1,21 +1,21 @@
 'use strict'
 const reportsRepository = require('../../../data/repository/reports.repository')
-const { monthlySalesConvert } = require('../../converter/monthly-sales.converter')
+const { annualSalesConvert } = require('../../converter/annual-sales.converter')
 const { salesConvert } = require('../../converter/sales.converter')
 
-const execute = async (date) => {
+const execute = async (year) => {
   try {
-    const reportsData = await listMonthlyEarnings(date)
-    const details = reportsData.map((detail) => monthlySalesConvert(detail))
+    const reportsData = await listAnnualSales(year)
+    const details = reportsData.map((detail) => annualSalesConvert(detail))
     return salesConvert(reportsData[0], details)
   } catch (error) {
     throw error
   }
 }
 
-const listMonthlyEarnings = async (date) => {
+const listAnnualSales = async (year) => {
   try {
-    const result = await reportsRepository.listMonthlyEarnings(date)
+    const result = await reportsRepository.listAnnualSales(year)
     return result
   } catch (error) {
     throw { httpCode: 422, message: error.message }

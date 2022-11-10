@@ -1,16 +1,16 @@
 'use strict'
-const listMonthlyEarnings = (date) => {
+const listMonthlySales = (date) => {
   return {
-    name: 'SP_LISTAR_GANANCIAS_MENSUALES',
-    statements: [`CALL SP_LISTAR_GANANCIAS_MENSUALES("${date}");`],
+    name: 'SP_LISTAR_VENTAS_MENSUALES',
+    statements: [`CALL SP_LISTAR_VENTAS_MENSUALES("${date}");`],
     values: []
   }
 }
 
-const listAnnualEarnings = (year) => {
+const listAnnualSales = (year) => {
   return {
-    name: 'SP_LISTAR_GANANCIAS_ANUALES',
-    statements: [`CALL SP_LISTAR_GANANCIAS_ANUALES(${year});`],
+    name: 'SP_LISTAR_VENTAS_ANUALES',
+    statements: [`CALL SP_LISTAR_VENTAS_ANUALES(${year});`],
     values: []
   }
 }
@@ -36,8 +36,8 @@ const listLeastSoldMenu = (data, limit) => {
 }
 
 module.exports = {
-  listMonthlyEarnings,
-  listAnnualEarnings,
+  listMonthlySales,
+  listAnnualSales,
   listBestSellersMenu,
   listLeastSoldMenu
 }
