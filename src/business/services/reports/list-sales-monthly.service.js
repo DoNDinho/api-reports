@@ -6,6 +6,7 @@ const { salesConvert } = require('../../converter/sales.converter')
 const execute = async (date) => {
   try {
     const reportsData = await listMonthlySales(date)
+    if(reportsData.length == 0) return {}
     const details = reportsData.map((detail) => monthlySalesConvert(detail))
     return salesConvert(reportsData[0], details)
   } catch (error) {
