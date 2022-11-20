@@ -35,9 +35,21 @@ const listLeastSoldMenu = (data, limit) => {
   }
 }
 
+const listAveragePreparationTime = (data) => {
+  const date = data.date
+  const idCategory = data.category.code
+  return {
+    name: 'SP_LISTAR_TIEMPO_PROMEDIO_PEDIDO',
+    statements: [`CALL SP_LISTAR_TIEMPO_PROMEDIO_PEDIDO("${date}", ${idCategory});`],
+    values: []
+  }
+}
+
 module.exports = {
   listMonthlySales,
   listAnnualSales,
   listBestSellersMenu,
-  listLeastSoldMenu
+  listLeastSoldMenu,
+  listAveragePreparationTime
 }
+

@@ -55,9 +55,24 @@ const listLeastSoldMenu = async (data, limit) => {
   }
 }
 
+const listAveragePreparationTime = async (data) => {
+  try {
+    const mySqlClient = await MySqlClient.getInstance()
+    const procedure = sqlProcedures.listAveragePreparationTime(data)
+    const sqlRunner = new MySqlRunner(mySqlClient)
+    const result = await sqlRunner.runProcedure(procedure)
+    console.log(JSON.stringify(result))
+    return result.pop()[0]
+  } catch (error) {
+    throw error
+  }
+}
+
+
 module.exports = { 
   listMonthlySales,
   listAnnualSales,
   listBestSellersMenu,
-  listLeastSoldMenu
+  listLeastSoldMenu,
+  listAveragePreparationTime
 }
