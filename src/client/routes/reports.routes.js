@@ -4,6 +4,7 @@ const listSalesAnnualService = require('../../business/services/reports/list-sal
 const listLeastSoldMenuService = require('../../business/services/reports/list-least-sold-menu.service')
 const listBestSellerMenuService = require('../../business/services/reports/list-best-seller-menu.service')
 const listAveragePreparationTime = require('../../business/services/reports/list-average-preparation-time.service')
+const listDishesSoldCategory = require('../../business/services/reports/list-dishes-sold-category.service')
 const router = express.Router()
 
 router.post(`/Reports/v1/sales/monthly`, async (req, res, next) => {
@@ -56,5 +57,14 @@ router.post(`/Reports/v1/menu/average-preparation-time`, async (req, res, next) 
   }
 })
 
+router.post(`/Reports/v1/menu/sold`, async (req, res, next) => {
+  try {
+    const response = await listDishesSoldCategory.execute(req.body)
+    res.json({ menus_sold: response })
+  } catch (error) {
+    console.log('error: ', error.message)
+    next(error)
+  }
+})
 
 module.exports = router

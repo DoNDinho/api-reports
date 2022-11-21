@@ -45,11 +45,21 @@ const listAveragePreparationTime = (data) => {
   }
 }
 
+const listDishesSoldCategory = (data) => {
+  const date = data.date
+  return {
+    name: 'SP_LISTAR_PLATOS_VENDIDOS_CATEGORIA',
+    statements: [`CALL SP_LISTAR_PLATOS_VENDIDOS_CATEGORIA("${date}");`],
+    values: []
+  }
+}
+
 module.exports = {
   listMonthlySales,
   listAnnualSales,
   listBestSellersMenu,
   listLeastSoldMenu,
-  listAveragePreparationTime
+  listAveragePreparationTime,
+  listDishesSoldCategory
 }
 
